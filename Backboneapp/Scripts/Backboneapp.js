@@ -50,7 +50,7 @@
         {
             var _this = this;
             $.ajax({
-                url: "Backboneapp_data.json",
+                url: "app_data.json",
                 dataType: 'json',
                 data: {},
                 async: false,
