@@ -1,4 +1,6 @@
 ﻿$(document).ready(function () {
+    //try {
+
     var Item = Backbone.Model.extend({});
 
     var ItemCollection = Backbone.Collection.extend({
@@ -9,27 +11,41 @@
     });
 
     var MenuView = Backbone.View.extend({
-        el: $('#backbone-menu'),
-        template: $('#item-tmpl').template(),
-
         render: function () {
-            this.el.empty();
-            $.tmpl(this.template, this.model.toArray()).appendTo(this.el);
-            return this;
+            $('#backbone-menu').html(_.template($('#item-template').html(), this.model));
         }
     });
 
     var ContentView = Backbone.View.extend({
-        el: $('#backbone-content'),
-        template: $('#content-tmpl').template(),
-
         render: function () {
-            this.el.empty();
-            $.tmpl(this.template, this.model).appendTo(this.el);
+            //var compiledTemplate = this.template({ data: this.model.toJSON() });
+            //this.$el.html(compiledTemplate);
 
-            return this;
+            //console.log(this.model);
+            //console.log(this.model.toJSON());
+
+            /*
+            _.each(
+                this.model,
+                function (key, value) {
+                    //alert(key + " " + value);
+                    console.log(key + " " + value);
+                });
+*/
+            $('#backbone-content').html(_.template($('#content-template').html(), this.model));
+            //$('#backbone-content').html(_.template($('#content-template').html()), this.model.toJSON());
+            //return this;
         }
+        /*
+        render: function () {
+            $('#backbone-content').html('sdfsfsdsdfsdf');//this.model.toJSON());
+            //$(this.el).html(this.model.toJSON());
+            //$('#item-template').text('this.setText()');
+            // return this;
+        }
+        */
     });
+
 
     var NavigationRouter = Backbone.Router.extend({
         _data: null,
@@ -40,13 +56,17 @@
             "info/:id": "showInfo",
             "*actions": "defaultRoute"
         },
+
         initialize: function (options) {
             var _this = this;
             $.ajax({
+                type: "GET",
                 url: "app_data.json",
                 dataType: 'json',
                 data: {},
+                cache: true,
                 async: false,
+                global: true,
                 success: function (data) {
                     _this._data = data;
                     _this._items = new ItemCollection(data);
@@ -54,13 +74,14 @@
                     _this._view.render();
                     Backbone.history.loadUrl();
                 }
-
             });
             return this;
         },
+
         defaultRoute: function (actions) {
             this.showInfo(1);
         },
+
         showInfo: function (id) {
             var view = new ContentView({ model: this._items.at(id - 1) });
             $(".active").removeClass("active");
@@ -70,5 +91,11 @@
     });
 
     var navigationRouter = new NavigationRouter;
+
     Backbone.history.start();
+
+    //} catch (e) {
+    //)    console.log(e);
+    //    alert(e.message);
+    //}
 });
