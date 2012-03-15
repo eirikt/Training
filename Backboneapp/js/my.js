@@ -48,7 +48,6 @@
                     _this._items = new ItemCollection(data);
                     _this._view = new MenuView({ model: _this._items });
                     _this._view.render();
-                    //Backbone.history.loadUrl();
                 }
             });
             return this;
@@ -66,7 +65,7 @@
         }
     });
 
-    /*var navigationRouter =*/ new NavigationRouter;
+    new NavigationRouter;
 
     Backbone.history.start();
 });
