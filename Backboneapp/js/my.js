@@ -1,40 +1,59 @@
 ﻿$(document).ready(function () {
 
-    var Item = Backbone.Model.extend({});
+    //////    Model    //////
+    var Item = Backbone.Model.extend({
+        "position": 0,
+        "title": "",
+        "content": ""
+    });
+    //var Item = Backbone.Model.extend({}); // Also works as the model is loaded from a JSON file
 
     var ItemCollection = Backbone.Collection.extend({
-        model: Item,
-        comparator: function (item) {
-            return item.get("position");
-        }
+        model: Item
+        //comparator: function (item) {
+        //    return item.get("position");
+        //}
     });
 
 
+    //////    View    //////
+    var renderCollectionView = function () {
+        var compiledTemplate = _.template(this.tmpl.html(), {data: this.model.models});
+        this.$el.html(compiledTemplate);
+        return this;
+    };
+
+    var renderView = function () {
+        var compiledTemplate = _.template(this.tmpl.html(), this.model);
+        this.$el.html(compiledTemplate);
+        return this;
+    };
+
     var MenuView = Backbone.View.extend({
-        render: function () {
-            $('#backbone-menu').html(_.template($('#item-template').html(), this.model));
-        }
+        el: $('#backbone-menu'),
+        tmpl: $('#menu-backbone-view-collection-template'),
+        render: renderCollectionView
     });
 
     var ContentView = Backbone.View.extend({
-        render: function () {
-            $('#backbone-content').html(_.template($('#content-template').html(), this.model));
-        }
+        el: $('#backbone-content'),
+        tmpl: $('#content-backbone-view-template'),
+        render: renderView
     });
 
 
+    //////    Router (Controller)    //////
     var NavigationRouter = Backbone.Router.extend({
         _data: null,
         _items: null,
-        _view: null,
 
         routes: {
             "info/:id": "showInfo",
             "*actions": "defaultRoute"
         },
 
-        initialize: function (options) {
-            var _this = this;
+        initialize: function () {
+            var that = this;
             $.ajax({
                 type: "GET",
                 url: "app_data.json",
@@ -44,10 +63,9 @@
                 async: false,
                 global: true,
                 success: function (data) {
-                    _this._data = data;
-                    _this._items = new ItemCollection(data);
-                    _this._view = new MenuView({ model: _this._items });
-                    _this._view.render();
+                    that._data = data;
+                    that._items = new ItemCollection(data);
+                    new MenuView({ model: that._items }).render();
                 }
             });
             return this;
@@ -58,14 +76,13 @@
         },
 
         showInfo: function (id) {
-            var view = new ContentView({ model: this._items.at(id - 1) });
             $(".active").removeClass("active");
-            $("#item" + id).addClass("active");
-            view.render();
+            $("#" + id).addClass("active");
+            new ContentView({ model: this._items.at(id - 1) }).render();
         }
     });
 
-    new NavigationRouter;
-
+    // Execute Backbone.js router (MVC structure)
+    new NavigationRouter();
     Backbone.history.start();
 });
