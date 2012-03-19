@@ -5,5 +5,11 @@ server: http://localhost:4224
 load:
   - js/underscore.1.3.1.js
   - js/jquery-1.7.1.js
+  - js/backbone.0.9.1.js
+  - js/my.js
+  #- js/my-router.js
   - test/usestrict-test.js
   - test/underscore-template-test.js
+  - test/dom-test.js
+  - test/backbone-model-test.js
+  - test/backbone-view-test.js

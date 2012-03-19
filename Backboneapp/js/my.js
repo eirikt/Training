@@ -48,13 +48,13 @@ var ContentView = Backbone.View.extend({
     //tmpl: $('#content-backbone-view-template'),
     //render: renderView
     render: function () {
-        console.log("template:" + $('#content-backbone-view-template').html());
-        console.log("model:" + this.model);
+        //console.log("template:" + $('#content-backbone-view-template').html());
+        //console.log("model:" + this.model);
         //console.log("model:" +this.model.position);
         var compiledTemplate = _.template($('#content-backbone-view-template').html(), this.model);
-        console.log("compiledTemplate: " + compiledTemplate);
+        //console.log("compiledTemplate: " + compiledTemplate);
         $('#backbone-content').html(compiledTemplate);
-        console.log($('#backbone-content').html());
+        //console.log($('#backbone-content').html());
         return this;
     }
 });

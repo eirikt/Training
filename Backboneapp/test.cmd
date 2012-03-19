@@ -5,10 +5,10 @@
 REM ***************************
 REM *** JsTestDriver config ***
 REM ***************************
-SET JSTESTDRIVER="%JSTESTDRIVER_HOME%\JsTestDriver-1.3.4.b.jar"
+SET JSTESTDRIVER_LIB="%JSTESTDRIVER_HOME%\JsTestDriver-1.3.4.b.jar"
 SET JSTESTDRIVER_CONFIG="js-test-driver.yaml"
 SET PORT=4224
-SET RUNNER_MODE=INFO
+SET RUNNER_MODE=QUIET
 
 
 REM ***************************
@@ -34,4 +34,5 @@ REM JsTestDriver client command
 REM java -jar "%JSTESTDRIVER_HOME%\JsTestDriver-1.3.4.b.jar" --tests all
 
 REM JsTestDriver one-stop-shop server and client command (see http://code.google.com/p/js-test-driver/wiki/ContinuousBuild)
-java -jar %JSTESTDRIVER% --config %JSTESTDRIVER_CONFIG% --port %PORT% --runnerMode %RUNNER_MODE% --browser %IE_x86%,%FIREFOX%,%CHROME%,%CHROME_CANARY% --verbose --tests all
+REM java -jar %JSTESTDRIVER% --config %JSTESTDRIVER_CONFIG% --port %PORT% --runnerMode %RUNNER_MODE% --browser %IE_x86%,%FIREFOX%,%CHROME%,%CHROME_CANARY% --verbose --testOutput .\test\log --tests all
+java -jar %JSTESTDRIVER_LIB% --config %JSTESTDRIVER_CONFIG% --port %PORT% --runnerMode %RUNNER_MODE% --browser %IE% --verbose --testOutput .\test\log --tests all
