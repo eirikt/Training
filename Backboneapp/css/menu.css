@@ -1,0 +1,76 @@
+html {
+    height: 100%;
+    overflow: hidden;
+}
+body {
+    height: 100%;
+}
+#menu
+{
+    font: 12px/1.44 Arial,Helvetica,sans-serif;
+    right: 0px;
+    position: absolute;
+    z-index: 10000;
+    color: #000000;
+    width: 235px;
+    background-color: rgba(255,255,255,0.4);
+    /*Chrome didn't work correct with height100% + 10px vertical padding*/
+    padding: 0px 10px;
+    overflow:hidden;
+}
+#content
+{
+    height:100%;
+    /*margin-right: 255px;*/
+    position: relative;
+    background-color: #FFF;
+}
+.menu-caption
+{
+    font-size: 24px;
+    text-align: right;
+    padding-right: 10px;
+    border-bottom: 2px solid #000000;
+}
+#navigation-block
+{
+    list-style-type: none;
+    text-align: right;
+}
+#navigation
+{
+    margin-top: 10px;
+    min-height: 150px;
+    height: 15%;
+}
+#about
+{
+    min-height: 270px;
+    height: 25%;
+}
+#likes
+{
+    margin-bottom: 10px;
+}
+#navigation a
+{
+    padding-right: 25px;
+    font-size: 14px;
+    text-decoration: none;
+    background: url('../../Assets/Images/Back to top arrow.png') no-repeat right center;
+    color: #000;
+}
+.content-block
+{
+    margin: 10px;
+    text-align: justify;
+}
+.content-block li
+{
+    float: right;
+    margin-left: 10px;
+}
+#facebook-like
+{
+    margin-right: -5px;
+}
