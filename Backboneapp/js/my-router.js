@@ -1,6 +1,9 @@
 ﻿$(document).ready(function () {
 
-    //////    Router (Controller)    //////
+    /////////////////////////////////////////
+    //////    Routers (Controllers)    //////
+    /////////////////////////////////////////
+
     var NavigationRouter = Backbone.Router.extend({
         _data: null,
         _items: null,
@@ -23,7 +26,7 @@
                 success: function (data) {
                     that._data = data;
                     that._items = new ItemCollection(data);
-                    new MenuView({ model: that._items }).render();
+                    new MenuView({ collection: that._items }).render();
                 }
             });
             return this;

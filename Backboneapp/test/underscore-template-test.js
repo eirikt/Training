@@ -43,8 +43,6 @@
 
 
         "test.5: Setting a 'resolved' Underscore.js template into an HTML element": function () {
-            var div = jQuery("<div></div>");
-
             var tmpl = "Hello <%= name %>";
             var data = {name: 'World'};
             var resolvedTemplate = _.template(tmpl, data);

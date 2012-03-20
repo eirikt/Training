@@ -25,7 +25,7 @@ TestCase("BackboneModelTest", {
     },
 
 
-    "test.2: Simple Backbone models": function () {
+    "test.2: Simple Backbone.js models in Underscore.js templates": function () {
         var div = $("<div></div>");
 
         var tmpl = "<script type='text/template' id='content-backbone-view-template'><div id='<%= attributes.position %>' class='content'><%= attributes.content %></div></script>";
@@ -49,7 +49,7 @@ TestCase("BackboneModelTest", {
     },
 
 
-    "test.3: Simple Backbone models": function () {
+    "test.3: Simple Backbone.js models in Underscore.js templates": function () {
         var div = $("<div></div>");
 
         var tmpl = "<script type='text/template' id='content-backbone-view-template'><div id='<%= position %>' class='content'><%= content %></div></script>";
@@ -69,18 +69,17 @@ TestCase("BackboneModelTest", {
     },
 
 
-    "test.4: Simple Backbone models": function () {
-        var Itemm = Backbone.Model.extend({
-            "position": 0,
-            "title": "",
-            "content": ""
-        });
-
+    "test.4: Simple Backbone.js models in Underscore.js templates": function () {
         var div = $("<div></div>");
 
         var tmpl = "<script type='text/template' id='content-backbone-view-template'><div id='<%= attributes.position %>' class='content'><%= attributes.content %></div></script>";
 
-        var data = new Itemm();
+        var MyItem = Backbone.Model.extend({
+            "position": 0,
+            "title": "",
+            "content": ""
+        });
+        var data = new MyItem();
         data.attributes.position = 18;
         data.attributes.content = "My content";
 
@@ -95,24 +94,21 @@ TestCase("BackboneModelTest", {
     },
 
 
-    "test.5: Simple Backbone models": function () {
-        var Itemm = Backbone.Model.extend({
-            "position": 0,
-            "title": "",
-            "content": ""
-        });
-
+    "test.5: Simple Backbone.js models in Underscore.js templates": function () {
         var div = $("<div></div>");
 
         var tmpl = "<script type='text/template' id='content-backbone-view-template'><div id='<%= attributes.position %>' class='content'><%= attributes.content %></div></script>";
 
-        var data = new Itemm();
+        var MyItem = Backbone.Model.extend({
+            "position": 0,
+            "title": "",
+            "content": ""
+        });
+        var data = new MyItem();
         data.set({position: 18});
         data.set({content: "My content"});
 
-        var resolvedTemplate = _.template(tmpl, data);
-
-        div.html(resolvedTemplate);
+        div.html(_.template(tmpl, data));
 
         assertEquals(
             "<script id=\"content-backbone-view-template\" type=\"text/template\"><div id='18' class='content'>My content</div></script>",

@@ -1,26 +1,5 @@
 (function () {
 
-    /* add an html body content from url to the body of current document
-     *
-     * Possible extensions:
-     * + support for HTML fragments - non-full documents
-     * + error handling and explanation
-     */
-    /*
-     function loadTestBody(url) {
-     var req, body, body_content;
-     req = new XMLHttpRequest();
-     req.open('GET', url, false);
-     // synchronous
-     req.send(null);
-     // body element with children
-     body_content = req.responseText.match(/<body[\s\S]*<\/body>/);
-     body = document.documentElement.getElementsByTagName('body')[0];
-     // body tag itself is ignored, only its children will be inserted
-     body.innerHTML = body_content;
-     }
-     */
-
     // All test cases can share this setUp
     function setUp() {
         /*:DOC +=
@@ -68,16 +47,4 @@
             assertObject(this.lis);
         }
     });
-
-    /*
-     TestCase("myTasksTest", {
-     setUp: function () {
-     loadTestBody("http://localhost/js2/");
-     },
-
-     "test mark task as done": function () {
-     assertObject(this.body.getElementById('content'));
-     }
-     });
-     */
 }());
