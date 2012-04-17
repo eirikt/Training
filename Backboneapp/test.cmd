@@ -15,7 +15,7 @@ REM SET JSTESTDRIVER_SERVER=<TODO: some remote server location>
 REM **** The JsTestDriver client settings ****
 SET JSTESTDRIVER_PORT=4224
 SET JSTESTDRIVER_VERSION=1.3.4.b
-SET JSTESTDRIVER_CONFIG=js-test-driver.config.yaml
+SET JSTESTDRIVER_CONFIG=jstestdriver.config.yaml
 SET JSTESTDRIVER_VERBOSE=FALSE
 SET JSTESTDRIVER_DEBUG=FALSE
  SET JSTESTDRIVER_RUNNERMODE=QUIET
@@ -65,7 +65,7 @@ REM *********************************************
 REM **** Formal verification by JsTestDriver ****
 REM *********************************************
 IF %JSTESTDRIVER_VERBOSE% == TRUE (
-    SET JSTESTDRIVER_COMMAND=java -jar "%JSTESTDRIVER_HOME%\JsTestDriver-%JSTESTDRIVER_VERSION%.jar" --config %JSTESTDRIVER_CONFIG% --port %JSTESTDRIVER_PORT% --runnerMode %JSTESTDRIVER_RUNNERMODE% --browser %IE% --verbose --testOutput .\test\log --tests all
+    SET JSTESTDRIVER_COMMAND=java -jar "%JSTESTDRIVER_HOME%\JsTestDriver-%JSTESTDRIVER_VERSION%.jar" --config %JSTESTDRIVER_CONFIG% --port %JSTESTDRIVER_PORT% --runnerMode %JSTESTDRIVER_RUNNERMODE% --browser %IE%,%CHROME_CANARY% --verbose --testOutput .\test\log --tests all
     REM SET JSTESTDRIVER_COMMAND=java -jar "%JSTESTDRIVER_HOME%\JsTestDriver-%JSTESTDRIVER_VERSION%.jar" --verbose --server %JSTESTDRIVER_SERVER% --config %JSTESTDRIVER_CONFIG% --tests all
     REM IF %JSTESTDRIVER_DEBUG% == TRUE (
         REM SET JSTESTDRIVER_COMMAND=java -jar "%JSTESTDRIVER_HOME%\JsTestDriver-%JSTESTDRIVER_VERSION%.jar" --runnerMode DEBUG --verbose --server %JSTESTDRIVER_SERVER% --config %JSTESTDRIVER_CONFIG% --tests all
@@ -73,7 +73,7 @@ IF %JSTESTDRIVER_VERBOSE% == TRUE (
     REM        SET JSTESTDRIVER_COMMAND=java -jar "%JSTESTDRIVER_HOME%\JsTestDriver-%JSTESTDRIVER_VERSION%.jar" --verbose --server %JSTESTDRIVER_SERVER% --config %JSTESTDRIVER_CONFIG% --tests all
     REM )
 ) ELSE (
-    SET JSTESTDRIVER_COMMAND=java -jar "%JSTESTDRIVER_HOME%\JsTestDriver-%JSTESTDRIVER_VERSION%.jar" --config %JSTESTDRIVER_CONFIG% --port %JSTESTDRIVER_PORT% --runnerMode %JSTESTDRIVER_RUNNERMODE% --browser %IE% --testOutput .\test\log --tests all
+    SET JSTESTDRIVER_COMMAND=java -jar "%JSTESTDRIVER_HOME%\JsTestDriver-%JSTESTDRIVER_VERSION%.jar" --config %JSTESTDRIVER_CONFIG% --port %JSTESTDRIVER_PORT% --runnerMode %JSTESTDRIVER_RUNNERMODE% --browser %IE%,%CHROME_CANARY% --testOutput .\test\log --tests all
 )
 ECHO Executing command %JSTESTDRIVER_COMMAND%...
 IF %DEBUG% == TRUE (

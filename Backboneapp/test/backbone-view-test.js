@@ -1,9 +1,7 @@
 BackboneViewTest = TestCase("BackboneViewTest");
 
 BackboneViewTest.prototype.setUp = function () {
-    /*:DOC +=
-     <div id="backbone-content">Hello World</div>
-     */
+    /*:DOC += <div id="backbone-content">Hello World</div>*/
 };
 
 BackboneViewTest.prototype.test1 = function () {

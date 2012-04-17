@@ -16,11 +16,7 @@
          </div>
          </script>*/
 
-        /*:DOC +=
-         <div id="content">
-            <div id="backbone-menu"></div>
-            <div id="backbone-content">Hello World</div>
-        </div>*/
+        /*:DOC += <div id="content"></div>*/
 
         this.tabs = window.document.getElementById("tabs");
     }
@@ -39,12 +35,9 @@
             this.template = window.document.getElementById("content-backbone-view-template");
             assertObject(this.template);
 
-            this.contentDiv = window.document.getElementById("backbone-content");
-            assertObject(this.contentDiv);
-            assertEquals("Hello World", this.contentDiv.textContent);
-
-            assertObject(this.links);
-            assertObject(this.lis);
+            this.content = $("#content");
+            assertObject(this.content);
+            assertEquals("", this.content.html());
         }
     });
 }());
