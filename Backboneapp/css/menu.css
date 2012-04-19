@@ -7,7 +7,7 @@ body {
 }
 #menu
 {
-    font: 12px/1.44 Arial,Helvetica,sans-serif;
+    font: 12px/1.44 sans-serif;
     right: 0px;
     position: absolute;
     z-index: 10000;
